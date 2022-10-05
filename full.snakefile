@@ -7,9 +7,18 @@ print(MODELS)
 
 rule all:
     input:
-        expand('{sig}.x.{model}.predict.csv', sig=SAMPLES, model=MODELS)
+        #expand('{sig}.x.{model}.predict.csv', sig=SAMPLES, model=MODELS)
         #expand('{sig}.x.{model}.sig',sig=SAMPLES,model=MODELS) 
         #expand('{sample}.downsample.sig', sample=SAMPLES)
+
+rule read_csv:
+    input:
+        lambda wildcards
+    output:
+        ibd_full.Read2[wildcards.Run]
+    shell: '''
+        print(Run)
+    ''' 
 
 rule get_metagenome:
     input:
