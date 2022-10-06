@@ -1,0 +1,3 @@
+WildcardError in line 25 of /Users/jessicalumian/IBD-RF/2022-donut-ibd-classified-sra-search/Snakefile:
+No values given for wildcard 'accession'.
+  File "/Users/jessicalumian/IBD-RF/2022-donut-ibd-classified-sra-search/Snakefile", line 25, in <module>

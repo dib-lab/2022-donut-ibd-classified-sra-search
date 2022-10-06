@@ -1,0 +1,7 @@
+Building DAG of jobs...
+MissingInputException in line 23 of /Users/jessicalumian/IBD-RF/2022-donut-ibd-classified-sra-search/Snakefile:
+Missing input files for rule get_metagenome:
+    output: ERR3473627.downsample.sig
+    wildcards: accession=ERR3473627
+    affected files:
+        inputs/ERR3473627.sig
