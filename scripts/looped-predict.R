@@ -7,7 +7,7 @@ set.seed(seed) # specify seeds for random number generator
 
 sample_pred <- data.frame()
 
-for (i in 1:count(snakemake@wildcards[['sig']])){
+for (i in 1:length(snakemake@wildcards[['sig']])){
 
 df <- read_csv(snakemake@input[['csv']]) # read in csv
 optimal_rf <- read_rds(snakemake@input[['model']]) # read in the corresponding forest model
