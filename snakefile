@@ -56,4 +56,4 @@ rule get_predict:
     output:
         csv='{accession}.x.{model}.predict.csv'
     conda: 'envs/R.yml'
-    script: "scripts/predict.R"
+    script: "scripts/looped-predict.R"
