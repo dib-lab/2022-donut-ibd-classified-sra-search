@@ -39,6 +39,6 @@ df_t <- subset(df_t, select = -sample) # remove sample column
 
 pred_ibd <- predict(optimal_rf, data= df_t) # predict the diagnosis
 
-pred_idp_df <- data.frame(sample = rownames(df_t), prediction = pred_ibd$predictions)
+pred_idp_df <- data.frame(sample_x_model = rownames(df_t), prediction = pred_ibd$predictions)
 
 write_csv(pred_idp_df, snakemake@output[['csv']])

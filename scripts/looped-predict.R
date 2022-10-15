@@ -7,7 +7,7 @@ set.seed(seed) # specify seeds for random number generator
 
 sample_pred <- data.frame()
 
-for (i in 1:length(snakemake@wildcards[['sig']])){
+for (i in 1:length(snakemake@params[['count']])){
 
 df <- read_csv(snakemake@input[['csv']]) # read in csv
 optimal_rf <- read_rds(snakemake@input[['model']]) # read in the corresponding forest model
@@ -43,9 +43,9 @@ df_t <- subset(df_t, select = -sample) # remove sample column
 
 pred_ibd <- predict(optimal_rf, data= df_t) # predict the diagnosis
 
-pred_idp_df <- data.frame(sample = rownames(df_t), prediction = pred_ibd$predictions)
+pred_idp_df <- data.frame(sample_model = rownames(df_t), prediction = pred_ibd$predictions)
 
 sample_pred <- rbind(sample_pred, pred_idp_df)
-}
 
 write_csv(sample_pred, snakemake@output[['csv']])
+}

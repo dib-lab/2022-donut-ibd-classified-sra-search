@@ -17,7 +17,8 @@ print(SAMPLES)
 
 rule all:
     input:
-        expand('output/predict.{sig}.x.{model}.csv', sig=SAMPLES, model=MODELS)
+        'output/all.predicts.csv'
+        #expand('output/predict.{sig}.x.{model}.csv', sig=SAMPLES, model=MODELS)
         #expand('{sig}.x.{model}.sig',sig=SAMPLES,model=MODELS) 
         #expand('output/{sample}.downsample.sig', sample=SAMPLES)
 
@@ -66,4 +67,13 @@ rule get_predict:
     output:
         csv='output/predict.{accession}.x.{model}.csv'
     conda: 'envs/R.yml'
-    script: "scripts/looped-predict.R"
+    script: "scripts/predict.R"
+
+rule cat_predicts:
+    input:
+        csv=expand('output/predict.{accession}.x.{model}.csv', accession=SAMPLES, model=MODELS)
+    output:
+        csv='output/all.predicts.csv'
+    shell: '''
+         awk '(NR == 1) || (FNR > 1)' {input.csv} > {output.csv}
+    '''
