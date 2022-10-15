@@ -75,5 +75,6 @@ rule cat_predicts:
     output:
         csv='output/all.predicts.csv'
     shell: '''
-         awk '(NR == 1) || (FNR > 1)' {input.csv} > {output.csv}
+        awk '(NR == 1) || (FNR > 1)' {input.csv} > {output.csv}
+        #FNR represents the number of the processed record in a single file. And NR represents it globally, so first line is accepted and the rest are ignored as before.
     '''
